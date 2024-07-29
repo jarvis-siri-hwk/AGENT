@@ -1,94 +1,71 @@
-# Technical Section: GUI Implementation
+# Competition Management System - Project Setup Summary Report
 
-Our GUI is implemented using Java Swing and consists of a main window with three tabbed panels, each providing different functionality for managing competitors. Here's a breakdown of the key components and their interactions:
+## 1. Project Overview
+The system is designed to manage competitors in a competition, calculate their scores, and generate reports.
 
-## 1. View/Edit Score Panel
+## 2. Project Structure
+We created a project with the following structure:
 
-This panel allows users to view and edit scores for individual competitors.
 
-Key components:
-- JTextField for entering competitor number
-- JButton to trigger the view action
-- JTextArea to display competitor details
+├── src/
+│ ├── main/
+│ │ └── java/
+│ │ ├── Competitor.java
+│ │ ├── CompetitorList.java
+│ │ ├── Manager.java
+│ │ └── Name.java
 
-When a user enters a competitor number and clicks the "View" button, the following process occurs:
+## 3. Setup Process
+- Created a batch script for Windows to set up the project structure.
+- The script creates all necessary directories and files.
+- Empty Java files were created for the main classes: Competitor, CompetitorList, Manager, and Name.
+- A sample data file (competitors.txt) was created with example competitor data.
+- A .gitignore file was set up to exclude unnecessary files from version control.
+- A README.md file was created with basic project information and instructions.
+- A build.gradle file was set up for Gradle configuration, including dependencies and tasks.
+- A tasks.json file was created for VS Code to easily run Gradle tasks.
+
+## 4. Key Components
+
+### 4.1 Java Classes
+- **Competitor**: Represents an individual competitor with attributes like number, name, level, scores, and an extra attribute.
+- **CompetitorList**: Manages a collection of competitors and provides methods for adding, removing, and retrieving competitors.
+- **Manager**: Handles file I/O and report generation.
+- **Name**: Represents a competitor's name with first, middle, and last name components.
+
+### 4.2 Build System
+Gradle was chosen as the build system for this project. The build.gradle file includes:
+- Java and Application plugins
+- JUnit Jupiter for testing
+- Main class specification (Manager)
+- JavaDoc generation configuration
+
+## 5. Next Steps
+- Implement the Java classes using the provided templates.
+- Write unit tests for all classes in the CompetitorTest.java file.
+- Implement the score calculation logic in the Competitor class.
+- Develop the report generation functionality in the Manager class.
+- Write comprehensive JavaDoc comments for all classes, especially CompetitorList.
+- Create class and activity diagrams for the project report.
+
+
+## 6. Conclusion
+The project structure and build system are now set up and ready for development. This setup provides a solid foundation for implementing the Competition Management System according to the assignment requirements. The use of Gradle and VS Code tasks will streamline the development process, allowing for easy building, testing, and documentation generation.
+
+
+## CLASS DIAGRAM
+
+![Picture](https://github.com/user-attachments/assets/8f31cd54-98c6-44db-8736-63d643e6b2b0)
+
+
 
 ```java
-viewButton.addActionListener(e -> {
-    int number = Integer.parseInt(competitorNumberField.getText());
-    Competitor competitor = competitorList.getCompetitorByNumber(number);
-    if (competitor != null) {
-        detailsArea.setText(competitor.getFullDetails());
-    } else {
-        detailsArea.setText("Competitor not found.");
+import utils.Manager;
+
+public class Main {
+    public static void main(String[] args) {
+        Manager manager = new Manager();
+        manager.run();
     }
-});
+}
 ```
-
-This code snippet demonstrates how we can retrieve the competitor object based on the entered number and display their details. Error handling is implemented to manage cases where the competitor is not found.
-
-## 2. Sort Competitors Panel
-
-This panel displays all competitors in a table format and allows sorting by name or score.
-
-Key components:
-- JTable to display competitor data
-- JButtons for sorting options
-
-```java
-sortByNameButton.addActionListener(e -> {
-    List<Competitor> sorted = competitorList.getAllCompetitors();
-    sorted.sort((c1, c2) -> c1.name.compareTo(c2.name));
-    updateTable(model, sorted);
-});
-```
-
-This code sorts the competitors by name and updates the table display. A similar method is used for sorting by score.
-
-## 3. Filter Competitors Panel
-
-This panel allows users to filter competitors based on level and competition type.
-
-Key components:
-- JComboBox for level selection
-- JRadioButtons for competition type selection
-
-```java
-List<Competitor> filtered = allCompetitors.stream()
-    .filter(c -> level.equals("All") || c.level.equals(level))
-    .filter(c -> type.equals("All") || 
-        (type.equals("Running") && c instanceof RunningCompetitor) ||
-        (type.equals("Swimming") && c instanceof SwimmingCompetitor) ||
-        (type.equals("Golf") && c instanceof GolfCompetitor))
-    .toList();
-```
-
-# Java Programming Language
-
-Java, conceived by James Gosling and his team at Sun Microsystems in the mid-1990s, emerged with the revolutionary "write once, run anywhere" philosophy. This concept, enabled by the Java Virtual Machine (JVM), allowed Java to quickly gain traction in a computing landscape increasingly defined by heterogeneous systems.
-
-Java's design reflects a careful balance between simplicity and power. Its syntax, derived from C and C++, provided familiarity to existing programmers while introducing key improvements such as automatic memory management and a robust type system. These features significantly reduced common programming errors and enhanced code reliability.
-
-The extensive standard library has been a cornerstone of Java's success, providing a rich set of tools for common programming tasks, from basic data structures to network communications and GUI development. This comprehensive ecosystem has been a key factor in Java's widespread adoption across various domains.
-
-In its commercial context, Java has played a transformative role in the software industry. It became the de facto standard for enterprise applications, powering mission-critical systems in finance, healthcare, and government sectors. The language's stability, scalability, and robust security features made it an ideal choice for building large-scale, distributed systems.
-
-Java's evolution has been driven by both technical innovation and industry demands. The introduction of features like generics and lambda expressions kept the language modern and relevant. The development of enterprise frameworks like Spring and Java EE (now Jakarta EE) was driven by the need for standardized, efficient approaches to building complex business applications.
-
-Looking to the future, Java faces both challenges and opportunities. The rise of cloud computing and microservices architectures has led to increased demand for languages with faster startup times and lower memory footprints. Java has responded with initiatives like GraalVM and Project Loom. Competition from more modern languages like Kotlin and Go poses a significant challenge, but Java's vast ecosystem and continuous evolution suggest a resilient future.
-
-As artificial intelligence and machine learning become increasingly central to software development, Java's robust libraries and performance optimizations position it well to remain relevant in these emerging fields.
-
-# Diagrams
-
-## Use Case Diagram
-
-![Use Case Diagram](media/image1.png)
-
-## Activity Diagram
-
-![Activity Diagram](media/image2.png)
-
-# GUI Screenshot
-
-![GUI Screenshot](media/image3.png)
