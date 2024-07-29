@@ -81,14 +81,14 @@ As artificial intelligence and machine learning become increasingly central to s
 
 # Diagrams
 
-## Use Case Diagram
-
-![Use Case Diagram](media/image1.png)
-
 ## Activity Diagram
 
-![Activity Diagram](media/image2.png)
+![Picture1](https://github.com/user-attachments/assets/4bdd0051-1f4d-44f8-b99a-9b8cf165429d)
+
+## Use case Diagram
+
+![Picture2](https://github.com/user-attachments/assets/3f56f01e-c865-4efb-9e5c-ddde294f615f)
 
 # GUI Screenshot
 
-![GUI Screenshot](media/image3.png)
+![Screenshot (22)](https://github.com/user-attachments/assets/57904ff2-60c6-4f17-a44b-38b52694bda2)
